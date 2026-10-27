@@ -1,0 +1,74 @@
+table DimProductSubcategory
+	lineageTag: 5f3505ae-70a6-49f1-bb6e-fc9e7b81f1bc
+
+	column ProductSubcategoryKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 499fd20f-cc83-46ed-aa1b-c562b924b6e4
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryAlternateKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 623401df-dc08-46ac-936a-7b884f8dc19c
+		summarizeBy: count
+		sourceColumn: ProductSubcategoryAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductSubcategoryName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 4be2ea3d-6d32-4f67-ac77-b22b0170be13
+		summarizeBy: none
+		sourceColumn: EnglishProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishProductSubcategoryName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 91cecd1c-1bc9-4365-9f8f-c6e40eef5696
+		summarizeBy: none
+		sourceColumn: SpanishProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchProductSubcategoryName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 84c49418-2c27-42b8-bf9a-d1b9cc04dc1e
+		summarizeBy: none
+		sourceColumn: FrenchProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 062a7cbd-10c6-4fd6-9dfe-9a2c92e0c5e1
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductSubcategory = m
+		mode: dual
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimProductSubcategory = AdventureWorksDW2025{[Schema="dbo",Item="DimProductSubcategory"]}[Data]
+				in
+				    dbo_DimProductSubcategory
+

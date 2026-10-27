@@ -1,0 +1,62 @@
+table DimOrganization
+	lineageTag: 5ebcaf1c-53a7-46ef-8b6d-ca4669cc85bf
+
+	column OrganizationKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: abb3ed17-c89b-4032-b38c-3afd5d9bea93
+		summarizeBy: count
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentOrganizationKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c6f6afeb-4d3f-485b-8e43-b6a2743dbe58
+		summarizeBy: count
+		sourceColumn: ParentOrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PercentageOfOwnership
+		dataType: string
+		sourceProviderType: nvarchar(16)
+		lineageTag: 4d0f15df-c3dc-4a64-8a03-a744a424182f
+		summarizeBy: none
+		sourceColumn: PercentageOfOwnership
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: f6292f4f-f39d-4ff0-a282-1b7aed1fdb06
+		summarizeBy: none
+		sourceColumn: OrganizationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: af29c72a-b82f-45c6-a1f1-7e627e149215
+		summarizeBy: count
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOrganization = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimOrganization = AdventureWorksDW2025{[Schema="dbo",Item="DimOrganization"]}[Data]
+				in
+				    dbo_DimOrganization
+

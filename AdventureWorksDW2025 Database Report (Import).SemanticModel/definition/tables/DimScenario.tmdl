@@ -1,0 +1,33 @@
+table DimScenario
+	lineageTag: a80b8766-61ed-49f0-b74a-a73ef6225161
+
+	column ScenarioKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 58e83659-a991-41e2-ad78-ba764d421914
+		summarizeBy: count
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 4755cc5e-75a9-48c3-b0c5-b0f92212c28d
+		summarizeBy: none
+		sourceColumn: ScenarioName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimScenario = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimScenario = AdventureWorksDW2025{[Schema="dbo",Item="DimScenario"]}[Data]
+				in
+				    dbo_DimScenario
+

@@ -1,0 +1,44 @@
+table FactAdditionalInternationalProductDescription
+	lineageTag: 4d4fe091-43e2-4d3b-b5e8-f227aa8cea51
+
+	column ProductKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e1b0bc12-8021-4dab-9327-8a4120a3be57
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CultureName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 210d8ee9-19a6-4edd-987a-8a3e1cd874e0
+		summarizeBy: none
+		sourceColumn: CultureName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductDescription
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 7dd8e63e-385c-4094-9d29-41fa7770404c
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactAdditionalInternationalProductDescription = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_FactAdditionalInternationalProductDescription = AdventureWorksDW2025{[Schema="dbo",Item="FactAdditionalInternationalProductDescription"]}[Data]
+				in
+				    dbo_FactAdditionalInternationalProductDescription
+

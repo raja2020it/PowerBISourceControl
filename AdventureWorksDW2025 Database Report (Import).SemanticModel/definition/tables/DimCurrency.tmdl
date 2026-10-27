@@ -1,0 +1,48 @@
+table DimCurrency
+	lineageTag: a3b50dd9-e657-4b71-937e-a6ca51a5e25c
+
+	column CurrencyKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 192e97da-da44-48e2-9645-dd1a67e6b8f9
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyAlternateKey
+		dataType: string
+		isNullable: false
+		sourceProviderType: nchar
+		lineageTag: 2e10bb87-b080-44d3-bb11-c0225aa979e1
+		summarizeBy: none
+		sourceColumn: CurrencyAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: e52546d6-08d5-4016-b7a1-ed83fa278d20
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCurrency = m
+		mode: dual
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimCurrency = AdventureWorksDW2025{[Schema="dbo",Item="DimCurrency"]}[Data]
+				in
+				    dbo_DimCurrency
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

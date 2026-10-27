@@ -1,0 +1,112 @@
+table DimAccount
+	lineageTag: 86daf894-273d-4a14-8370-2bb6db364eb5
+
+	column AccountKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c906085b-80b0-4cf9-82af-a5b490eded8e
+		summarizeBy: count
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: cef6219a-3292-425f-a918-11d9a1b81138
+		summarizeBy: count
+		sourceColumn: ParentAccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountCodeAlternateKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4a62b260-41d0-4b6b-b3d1-2346ffd9f9c2
+		summarizeBy: count
+		sourceColumn: AccountCodeAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountCodeAlternateKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2ed8cbec-4549-4974-b902-cce1a83d408e
+		summarizeBy: count
+		sourceColumn: ParentAccountCodeAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountDescription
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: de4fa519-9acc-45db-bb7a-eed0fb373fad
+		summarizeBy: none
+		sourceColumn: AccountDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 302e4c39-2add-45a1-a5bb-779fc3e4f12b
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operator
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 9c9ccd28-1332-4fcf-ac96-851a2cd110cf
+		summarizeBy: none
+		sourceColumn: Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomMembers
+		dataType: string
+		sourceProviderType: nvarchar(300)
+		lineageTag: 85642d19-9b07-49e8-ae7f-874a7a216e5c
+		summarizeBy: none
+		sourceColumn: CustomMembers
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValueType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 445ade22-88b4-427f-a27f-7c2537c78946
+		summarizeBy: none
+		sourceColumn: ValueType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomMemberOptions
+		dataType: string
+		sourceProviderType: nvarchar(200)
+		lineageTag: 03cd43b9-d1e1-4129-b0d7-342b60d06613
+		summarizeBy: none
+		sourceColumn: CustomMemberOptions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases(server),
+				    AdventureWorksDW2025 = Source{[Name=database]}[Data],
+				    dbo_DimAccount = AdventureWorksDW2025{[Schema="dbo",Item="DimAccount"]}[Data]
+				in
+				    dbo_DimAccount
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,55 @@
+table DimSalesReason
+	lineageTag: f62c8c14-41a0-4800-985a-a02d4de8c5ba
+
+	column SalesReasonKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4f172c42-6a77-4169-b1e4-7d1f7a64c381
+		summarizeBy: count
+		sourceColumn: SalesReasonKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonAlternateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a90ae945-3a0b-4a9e-9dc9-ef6950b37c0f
+		summarizeBy: count
+		sourceColumn: SalesReasonAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: ad0854bc-f4c1-4363-8cbd-d680f0122d26
+		summarizeBy: none
+		sourceColumn: SalesReasonName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonReasonType
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: c325e39c-8a31-4171-b316-d3ffd6aec0c0
+		summarizeBy: none
+		sourceColumn: SalesReasonReasonType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSalesReason = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimSalesReason = AdventureWorksDW2025{[Schema="dbo",Item="DimSalesReason"]}[Data]
+				in
+				    dbo_DimSalesReason
+

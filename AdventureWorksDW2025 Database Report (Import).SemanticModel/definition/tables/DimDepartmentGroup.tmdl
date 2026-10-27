@@ -1,0 +1,43 @@
+table DimDepartmentGroup
+	lineageTag: 4aaf6601-a4e7-4c3b-94e2-90aa2a398b79
+
+	column DepartmentGroupKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 30647637-2a2f-4df6-83a4-c35abd0c2b69
+		summarizeBy: count
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentDepartmentGroupKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 28084176-1ec8-4401-9c5a-d49ad905060b
+		summarizeBy: count
+		sourceColumn: ParentDepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 434f50e6-1498-4e70-80e6-cea12cbd8dcf
+		summarizeBy: none
+		sourceColumn: DepartmentGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDepartmentGroup = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimDepartmentGroup = AdventureWorksDW2025{[Schema="dbo",Item="DimDepartmentGroup"]}[Data]
+				in
+				    dbo_DimDepartmentGroup
+

@@ -1,0 +1,10 @@
+DEFINE
+	MEASURE '_Measures'[Total Sales] = CALCULATE(
+			SUM('FactInternetSales'[SalesAmount]),
+			FILTER(DimDate,[FiscalYear]=2013)
+		)
+
+EVALUATE
+	SUMMARIZECOLUMNS(
+		"Total Sales", [Total Sales]
+	)

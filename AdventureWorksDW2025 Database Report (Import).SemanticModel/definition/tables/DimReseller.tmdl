@@ -1,0 +1,213 @@
+table DimReseller
+	lineageTag: 18e8155a-713f-4c91-b5c8-1b7fcad4e61f
+
+	column ResellerKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c2a75160-4359-4428-94d0-ddb94f1cd219
+		summarizeBy: none
+		sourceColumn: ResellerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ad126bf3-8191-4213-b100-0fb13fc5d1cd
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResellerAlternateKey
+		dataType: string
+		sourceProviderType: nvarchar(15)
+		lineageTag: 9729d9a2-0ed7-48b8-a13c-59de578d8b3a
+		summarizeBy: none
+		sourceColumn: ResellerAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		sourceProviderType: nvarchar(25)
+		lineageTag: 346befad-a123-4fcf-bba4-59b8f6bc2463
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessType
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(20)
+		lineageTag: 6c86fc56-7913-4fc7-86a1-a161a83bc8b1
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResellerName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 7f26e828-daa9-4fa8-994b-6cd6311ff894
+		summarizeBy: none
+		sourceColumn: ResellerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberEmployees
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8bbab708-8bbc-40b3-b8f7-6f94a73b47ad
+		summarizeBy: none
+		sourceColumn: NumberEmployees
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderFrequency
+		dataType: string
+		sourceProviderType: char
+		lineageTag: c7db56cf-8f37-4e08-9db7-a8f00ba4d142
+		summarizeBy: none
+		sourceColumn: OrderFrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderMonth
+		dataType: int64
+		formatString: 0
+		sourceProviderType: tinyint
+		lineageTag: 42fdc8fa-fe33-46ab-9600-e61369fe17e1
+		summarizeBy: none
+		sourceColumn: OrderMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstOrderYear
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5f0eafef-63f9-455e-8a88-d9ae40facf04
+		summarizeBy: none
+		sourceColumn: FirstOrderYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastOrderYear
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b5f35654-dedc-48ee-8c43-ca318b5e6768
+		summarizeBy: none
+		sourceColumn: LastOrderYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLine
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: c7ffa810-a9d9-4d1a-b306-20a8bad83563
+		summarizeBy: none
+		sourceColumn: ProductLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		sourceProviderType: nvarchar(60)
+		lineageTag: 11906363-2de8-4f2a-97e0-bd6e4e9f5d81
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		sourceProviderType: nvarchar(60)
+		lineageTag: 3de5f2f4-d79e-4716-849a-6f6ab4da4a97
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnualSales
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: money
+		lineageTag: 0d252e0a-46e5-4418-b9ad-d77f20dbfd79
+		summarizeBy: none
+		sourceColumn: AnnualSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column BankName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: b427b39b-8504-46ab-a776-8d4d8d78421f
+		summarizeBy: none
+		sourceColumn: BankName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinPaymentType
+		dataType: int64
+		formatString: 0
+		sourceProviderType: tinyint
+		lineageTag: 05a3fc0c-c81b-4de9-a21d-e739e8f8db79
+		summarizeBy: none
+		sourceColumn: MinPaymentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinPaymentAmount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: money
+		lineageTag: a63e1a50-9d61-4752-bf45-f5e2f4817842
+		summarizeBy: none
+		sourceColumn: MinPaymentAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column AnnualRevenue
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: money
+		lineageTag: 0d96a3d4-edd3-4f74-8606-f15c834bf242
+		summarizeBy: none
+		sourceColumn: AnnualRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column YearOpened
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 85b8a1aa-e43c-4320-b506-a04bd221a32d
+		summarizeBy: none
+		sourceColumn: YearOpened
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimReseller = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimReseller = AdventureWorksDW2025{[Schema="dbo",Item="DimReseller"]}[Data]
+				in
+				    dbo_DimReseller
+

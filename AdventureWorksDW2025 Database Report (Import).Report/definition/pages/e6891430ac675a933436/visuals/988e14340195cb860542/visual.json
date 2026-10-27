@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "988e14340195cb860542",
+  "position": {
+    "x": 28.909540054111282,
+    "y": 28.909540054111282,
+    "z": 0,
+    "height": 257.43257095803858,
+    "width": 509.35856285815117,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table (MAXX Example)"
+                    }
+                  },
+                  "Property": "product"
+                }
+              },
+              "queryRef": "Table.product",
+              "nativeQueryRef": "product"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Table (MAXX Example)"
+                        }
+                      },
+                      "Property": "quantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table.quantity)",
+              "nativeQueryRef": "Sum of quantity"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Table (MAXX Example)"
+                        }
+                      },
+                      "Property": "unitprice"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table.unitprice)",
+              "nativeQueryRef": "Sum of unitprice"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table (MAXX Example)"
+                    }
+                  },
+                  "Property": "MAX"
+                }
+              },
+              "queryRef": "Table.MAX",
+              "nativeQueryRef": "MAX"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table (MAXX Example)"
+                    }
+                  },
+                  "Property": "RunningQuantity"
+                }
+              },
+              "queryRef": "Table (MAXX Example).RunningQuantity",
+              "nativeQueryRef": "RunningQuantity"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

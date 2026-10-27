@@ -1,0 +1,60 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+extendedProperty TabularEditor_DeploymentMetadata =
+		{
+		  "User": "MADALALAPTOP\\maada",
+		  "Time": "2026-08-16T19:36:20.5277376-05:00",
+		  "ClientMachine": "MADALALAPTOP",
+		  "DeploymentMode": "SaveUI",
+		  "TabularEditorBuild": "2.28.9557.26801"
+		}
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DimAccount","DimCurrency","DimCustomer","DimDate","DimDepartmentGroup","DimEmployee","DimGeography","DimOrganization","DimProduct","DimProductCategory","DimProductSubcategory","DimPromotion","DimReseller","DimSalesReason","DimSalesTerritory","DimScenario","FactAdditionalInternationalProductDescription","FactCallCenter","FactCurrencyRate","FactFinance","FactInternetSales","FactInternetSalesReason","FactProductInventory","FactResellerSales","FactSalesQuota","_Measures","server","database","Table (MAXX Example)","EmployeeDetails","CountrySelection","Country","CountrySelectionPrm"]
+
+annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"324c354b-db52-4f10-a388-042573b18cae","fromColumnLocalLineageTag":"a86c2b2e-8cb8-4c5d-8949-777f5aeb5ab9","toTableLocalLineageTag":"f88c62b8-6ef6-406f-9707-dc0c1bf5df98","toColumnLocalLineageTag":"9d8c70b9-fe97-45e3-b0ce-e6526800ee47"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"5ebcaf1c-53a7-46ef-8b6d-ca4669cc85bf","fromColumnLocalLineageTag":"af29c72a-b82f-45c6-a1f1-7e627e149215","toTableLocalLineageTag":"a3b50dd9-e657-4b71-937e-a6ca51a5e25c","toColumnLocalLineageTag":"192e97da-da44-48e2-9645-dd1a67e6b8f9"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"18e8155a-713f-4c91-b5c8-1b7fcad4e61f","fromColumnLocalLineageTag":"ad126bf3-8191-4213-b100-0fb13fc5d1cd","toTableLocalLineageTag":"f330a65b-e655-4520-b344-fa5547f2a368","toColumnLocalLineageTag":"6bd979e0-a104-4ab8-8a01-fda15ef8f730"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"98206986-affd-46a9-92b6-c21457775c16","fromColumnLocalLineageTag":"44bcbb62-f983-4e25-b21c-46ead9145cf6","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"24579c1b-2e22-4fef-b840-4eb755718044","fromColumnLocalLineageTag":"0c339cb0-5ed4-4bbb-a858-35c048234cb7","toTableLocalLineageTag":"a3b50dd9-e657-4b71-937e-a6ca51a5e25c","toColumnLocalLineageTag":"192e97da-da44-48e2-9645-dd1a67e6b8f9"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"24579c1b-2e22-4fef-b840-4eb755718044","fromColumnLocalLineageTag":"d026ec89-837f-4030-beb1-bdbdbf165185","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"d4298688-616b-4426-8949-921c46fb78b7","fromColumnLocalLineageTag":"c1cfbdf9-70e6-4cd4-b171-de5c6ead078b","toTableLocalLineageTag":"86daf894-273d-4a14-8370-2bb6db364eb5","toColumnLocalLineageTag":"c906085b-80b0-4cf9-82af-a5b490eded8e"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"d4298688-616b-4426-8949-921c46fb78b7","fromColumnLocalLineageTag":"01a76ec5-91c8-40bf-a921-66c2ef234afe","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"d4298688-616b-4426-8949-921c46fb78b7","fromColumnLocalLineageTag":"11436fdf-9a6b-423d-bda4-ba441e20b977","toTableLocalLineageTag":"4aaf6601-a4e7-4c3b-94e2-90aa2a398b79","toColumnLocalLineageTag":"30647637-2a2f-4df6-83a4-c35abd0c2b69"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"d4298688-616b-4426-8949-921c46fb78b7","fromColumnLocalLineageTag":"2a0b30cf-5ae3-436a-a2ab-d8a8280674be","toTableLocalLineageTag":"5ebcaf1c-53a7-46ef-8b6d-ca4669cc85bf","toColumnLocalLineageTag":"abb3ed17-c89b-4032-b38c-3afd5d9bea93"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"d4298688-616b-4426-8949-921c46fb78b7","fromColumnLocalLineageTag":"f31fd1c7-6d99-479f-811c-8a9084bbde48","toTableLocalLineageTag":"a80b8766-61ed-49f0-b74a-a73ef6225161","toColumnLocalLineageTag":"58e83659-a991-41e2-ad78-ba764d421914"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"860014b6-f85f-4983-9723-bf595dab1012","fromColumnLocalLineageTag":"790b5eb7-1eb9-42c0-9401-0e4fa982e401","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"860014b6-f85f-4983-9723-bf595dab1012","fromColumnLocalLineageTag":"76aa107b-debf-4492-8441-88b06891a58a","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"6c8a2a94-4a66-4a03-b8b0-a161372ad792","fromColumnLocalLineageTag":"66bbbed8-a848-4bb1-9151-b6debf05bfb6","toTableLocalLineageTag":"f62c8c14-41a0-4800-985a-a02d4de8c5ba","toColumnLocalLineageTag":"4f172c42-6a77-4169-b1e4-7d1f7a64c381"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"026677b6-c78c-41cf-a8c0-470cc053a0cf","fromColumnLocalLineageTag":"868e309f-3aeb-4f28-a828-aaa3dbb6b06c","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"026677b6-c78c-41cf-a8c0-470cc053a0cf","fromColumnLocalLineageTag":"a9c3a694-807d-4ed7-858b-3c2b72c9c042","toTableLocalLineageTag":"a30a79ee-8efd-4224-b780-ce8f285a43ec","toColumnLocalLineageTag":"d5822d0d-c1fb-465a-b8b1-0c3ee386ae02"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"41745dba-cba7-4e03-a6ef-d5b5cf449807","toTableLocalLineageTag":"a3b50dd9-e657-4b71-937e-a6ca51a5e25c","toColumnLocalLineageTag":"192e97da-da44-48e2-9645-dd1a67e6b8f9"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"1bb6d428-e9f9-49a8-b633-3b996066f915","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"1e42d3db-ceb0-4f6e-b97b-7782ad3717be","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"43889f49-609a-48de-a32f-a06e5d8a41db","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"566e9796-b699-423a-badc-0351a102046f","toTableLocalLineageTag":"324c354b-db52-4f10-a388-042573b18cae","toColumnLocalLineageTag":"4448e8f6-e24d-4a31-945a-1ba474d56c1e"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"22ea3c18-fcc4-42e3-bb1f-5897f7cdfe65","toTableLocalLineageTag":"a30a79ee-8efd-4224-b780-ce8f285a43ec","toColumnLocalLineageTag":"d5822d0d-c1fb-465a-b8b1-0c3ee386ae02"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f7046c14-9584-47e8-83d1-d77743afe9d0","fromColumnLocalLineageTag":"8a261588-afc9-400d-ab03-ada089930e9c","toTableLocalLineageTag":"e4bbc9e9-c61d-4d64-9922-0d39cb4e81ce","toColumnLocalLineageTag":"1e16bf89-ba19-4875-ab74-65bb698fe264"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"fb98b53b-6897-4c49-ab21-c18331ca7f11","fromColumnLocalLineageTag":"14c3caaa-a507-41bd-ab3d-df8290fe6a59","toTableLocalLineageTag":"332c1662-13a8-470b-ba0d-7381d82de1fb","toColumnLocalLineageTag":"69cf61ff-5c00-4157-81cb-d12ae78629f8"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"fb98b53b-6897-4c49-ab21-c18331ca7f11","fromColumnLocalLineageTag":"4b7289c3-d9e9-410f-8d0d-157c1f8c6cd6","toTableLocalLineageTag":"324c354b-db52-4f10-a388-042573b18cae","toColumnLocalLineageTag":"4448e8f6-e24d-4a31-945a-1ba474d56c1e"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"f330a65b-e655-4520-b344-fa5547f2a368","fromColumnLocalLineageTag":"696f441d-370b-4f25-be48-4b836350d476","toTableLocalLineageTag":"f88c62b8-6ef6-406f-9707-dc0c1bf5df98","toColumnLocalLineageTag":"9d8c70b9-fe97-45e3-b0ce-e6526800ee47"}},"objectType":"Relationship"}]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","TMDLView_Desktop","DevMode"]
+
+annotation __TEdtr = 1
+
+ref table DimAccount
+ref table DimCurrency
+ref table DimCustomer
+ref table DimDate
+ref table DimDepartmentGroup
+ref table DimEmployee
+ref table DimGeography
+ref table DimOrganization
+ref table DimProduct
+ref table DimProductCategory
+ref table DimProductSubcategory
+ref table DimPromotion
+ref table DimReseller
+ref table DimSalesReason
+ref table DimSalesTerritory
+ref table DimScenario
+ref table FactAdditionalInternationalProductDescription
+ref table FactCallCenter
+ref table FactCurrencyRate
+ref table FactFinance
+ref table FactInternetSales
+ref table FactInternetSalesReason
+ref table FactProductInventory
+ref table FactResellerSales
+ref table FactSalesQuota
+ref table _Measures
+ref table 'Table (MAXX Example)'
+ref table DimPromotionAggr
+ref table CountrySelection
+ref table Country
+
+ref cultureInfo en-US
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AdventureWorksDW2025 Database Report (Import)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3c446111-431a-477e-a638-218d74590ce8"
+  }
+}

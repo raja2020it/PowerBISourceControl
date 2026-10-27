@@ -1,0 +1,103 @@
+table FactFinance
+	lineageTag: d4298688-616b-4426-8949-921c46fb78b7
+
+	column FinanceKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 597c1ccf-e241-4f38-8b81-f65d4e95ede0
+		summarizeBy: count
+		sourceColumn: FinanceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 01a76ec5-91c8-40bf-a921-66c2ef234afe
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2a0b30cf-5ae3-436a-a2ab-d8a8280674be
+		summarizeBy: count
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 11436fdf-9a6b-423d-bda4-ba441e20b977
+		summarizeBy: count
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f31fd1c7-6d99-479f-811c-8a9084bbde48
+		summarizeBy: count
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c1cfbdf9-70e6-4cd4-b171-de5c6ead078b
+		summarizeBy: count
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 07f3a00c-1d30-4a15-8ee8-7aebd0e825d3
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 0f513735-e3de-4b4e-b5fd-966107c2d534
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFinance = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_FactFinance = AdventureWorksDW2025{[Schema="dbo",Item="FactFinance"]}[Data]
+				in
+				    dbo_FactFinance
+
+	annotation PBI_ResultType = Table
+

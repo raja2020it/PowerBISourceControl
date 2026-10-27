@@ -1,0 +1,165 @@
+table FactCallCenter
+	lineageTag: 98206986-affd-46a9-92b6-c21457775c16
+
+	column FactCallCenterID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c492d5ca-052d-4e6d-9ff6-e485def5f549
+		summarizeBy: count
+		sourceColumn: FactCallCenterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 44bcbb62-f983-4e25-b21c-46ead9145cf6
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column WageType
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(15)
+		lineageTag: fe2d4004-894a-46b7-8664-cd0034951c2f
+		summarizeBy: none
+		sourceColumn: WageType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shift
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(20)
+		lineageTag: f4ced02c-bcc6-43ae-9006-acd7411888a2
+		summarizeBy: none
+		sourceColumn: Shift
+
+		annotation SummarizationSetBy = Automatic
+
+	column LevelOneOperators
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: ec0c78f0-e5fe-4b29-b725-4b4406204008
+		summarizeBy: sum
+		sourceColumn: LevelOneOperators
+
+		annotation SummarizationSetBy = Automatic
+
+	column LevelTwoOperators
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: 658270b6-a5a4-41bb-aec2-caed36dcd9b7
+		summarizeBy: sum
+		sourceColumn: LevelTwoOperators
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalOperators
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: 057b6fd1-6938-4acd-8102-b7b0af5b67d4
+		summarizeBy: sum
+		sourceColumn: TotalOperators
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calls
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9a40178a-1396-4942-8a4e-4016d418fcf4
+		summarizeBy: sum
+		sourceColumn: Calls
+
+		annotation SummarizationSetBy = Automatic
+
+	column AutomaticResponses
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 64ff172b-57cd-4869-8fcc-742ed015af1d
+		summarizeBy: sum
+		sourceColumn: AutomaticResponses
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orders
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9b21e730-1576-4739-85bb-7b454911b400
+		summarizeBy: sum
+		sourceColumn: Orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column IssuesRaised
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: e278b601-ea81-46d8-867e-ab1786119afd
+		summarizeBy: sum
+		sourceColumn: IssuesRaised
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageTimePerIssue
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: d68c4c49-c516-4401-9425-15b30465eb05
+		summarizeBy: sum
+		sourceColumn: AverageTimePerIssue
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceGrade
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 8787b892-ff2b-489d-ae24-2d301c48e037
+		summarizeBy: sum
+		sourceColumn: ServiceGrade
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: cf25d84a-f4e7-4c19-b72e-0842baff20fe
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactCallCenter = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_FactCallCenter = AdventureWorksDW2025{[Schema="dbo",Item="FactCallCenter"]}[Data]
+				in
+				    dbo_FactCallCenter
+

@@ -1,0 +1,17 @@
+EVALUATE
+	SELECTCOLUMNS(
+		TOPN(
+			100,
+			'FactProductInventory',
+			'FactProductInventory'[ProductKey],
+			ASC
+		),
+		'FactProductInventory'[ProductKey],
+		'FactProductInventory'[DateKey],
+		'FactProductInventory'[MovementDate],
+		'FactProductInventory'[UnitCost],
+		'FactProductInventory'[UnitsIn],
+		'FactProductInventory'[UnitsOut],
+		'FactProductInventory'[UnitsBalance]
+	)
+	ORDER BY 'FactProductInventory'[ProductKey] ASC

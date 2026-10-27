@@ -1,0 +1,36 @@
+/// This parameter is for database
+expression server = "madalalaptop" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 55b61ca5-f9ec-48b1-a527-c304df59fb57
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression database = "AdventureWorksDW2025" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d2a6312a-e461-4af8-aa77-1343ede88699
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression CountrySelectionPrm = "USA" meta [IsParameterQuery=true, ExpressionIdentifier=Country, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 343dc26f-c0f0-4e47-9c1d-c215ab3656d9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression EmployeeDetails =
+		let
+		param = (CountrySelectionPrm as text)=>
+		let
+		Source = Sql.Database("localhost", "AdventureWorksDW2025", [Query="#(lf)exec GetEmployeeDetails1 '"& CountrySelectionPrm &"'"])
+		in
+		    		Source
+		in 	param
+	lineageTag: fc12495c-753e-4fe9-8998-4b14b533f6d3
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

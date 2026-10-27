@@ -1,0 +1,10 @@
+DEFINE
+	MEASURE '_Measures'[Average order value] = DIVIDE(
+			[Total Sales],
+			[Total orders]
+		)
+
+EVALUATE
+	SUMMARIZECOLUMNS(
+		"Average order value", [Average order value]
+	)

@@ -1,0 +1,25 @@
+table DimPromotionAggr
+	lineageTag: 3025bda7-fb8b-4e6b-83b8-544d9eb63014
+
+	column DimPromotion_EnglishPromotionType
+		lineageTag: fd06b055-4209-4bb6-a9dd-79c40f20301d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DimPromotion[EnglishPromotionType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DimPromotion_EnglishPromotionName
+		lineageTag: 8b935538-3803-4098-9f51-4ef8ae0ec5d9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DimPromotion[EnglishPromotionName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPromotionAggr = calculated
+		mode: import
+		source = SELECTCOLUMNS(DimPromotion,DimPromotion[EnglishPromotionType],DimPromotion[EnglishPromotionName])
+
+	annotation PBI_Id = 0b27200743224fef9679602fb47b5ac6
+

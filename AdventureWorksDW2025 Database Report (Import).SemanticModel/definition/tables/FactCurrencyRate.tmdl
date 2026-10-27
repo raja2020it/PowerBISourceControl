@@ -1,0 +1,71 @@
+table FactCurrencyRate
+	lineageTag: 24579c1b-2e22-4fef-b840-4eb755718044
+
+	column CurrencyKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0c339cb0-5ed4-4bbb-a858-35c048234cb7
+		summarizeBy: count
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d026ec89-837f-4030-beb1-bdbdbf165185
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageRate
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 7a8d39cd-7d50-431d-8f76-e97a02685b11
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EndOfDayRate
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 909fcf22-cd67-4c7e-b846-7b385f30f79b
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 0e9c72f7-ba98-42f5-a755-9c2eb53d9771
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactCurrencyRate = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_FactCurrencyRate = AdventureWorksDW2025{[Schema="dbo",Item="FactCurrencyRate"]}[Data]
+				in
+				    dbo_FactCurrencyRate
+
+	annotation PBI_ResultType = Table
+

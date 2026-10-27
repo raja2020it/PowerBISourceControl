@@ -1,0 +1,65 @@
+table 'Table (MAXX Example)'
+	lineageTag: 7ce480b3-a758-4ae2-a28e-c1ea18c0ccae
+
+	measure MAX = MAXX('Table (MAXX Example)','Table (MAXX Example)'[quantity]*'Table (MAXX Example)'[unitprice] )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4159c3e6-feee-42e0-8fb9-ab41c15f5741
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure RunningQuantity = CALCULATE(sum('Table (MAXX Example)'[quantity]),'Table (MAXX Example)'[product] <= max('Table (MAXX Example)'[product]))
+		formatString: 0
+		lineageTag: beda11a5-51df-4838-9c29-fc52c9cb8a3c
+
+	column product
+		dataType: string
+		lineageTag: a360e40c-29dd-4297-a9ed-b700ee0c0898
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: f97cd44b-5317-4724-863e-e805c2dd6e82
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitprice
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7c600f11-260d-4b22-a033-129aa744b077
+		summarizeBy: sum
+		sourceColumn: unitprice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Table (MAXX Example)' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WqlHQhQAFOMsKwQRzlGJ1QOocFSCgBkorGMGZKoYGBnB1TujqTBHqjJDUOaOpMzRAaFExRahzQTfPGMpUMdQxgJgXCwA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"| Product | Quantity | Unit Price |" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"| Product | Quantity | Unit Price |", type text}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type", "| Product | Quantity | Unit Price |", Splitter.SplitTextByDelimiter("|", QuoteStyle.Csv), {"| Product | Quantity | Unit Price |.1", "| Product | Quantity | Unit Price |.2", "| Product | Quantity | Unit Price |.3", "| Product | Quantity | Unit Price |.4", "| Product | Quantity | Unit Price |.5"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"| Product | Quantity | Unit Price |.1", type text}, {"| Product | Quantity | Unit Price |.2", type text}, {"| Product | Quantity | Unit Price |.3", type text}, {"| Product | Quantity | Unit Price |.4", type text}, {"| Product | Quantity | Unit Price |.5", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"| Product | Quantity | Unit Price |.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"| Product | Quantity | Unit Price |.2", "product"}, {"| Product | Quantity | Unit Price |.3", "quantity"}, {"| Product | Quantity | Unit Price |.4", "unit price"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"| Product | Quantity | Unit Price |.5"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns1","------","",Replacer.ReplaceText,{"product"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Promoted Headers",{{" - ", type text}, {" -------: ", Int64.Type}, {" ---------: ", Currency.Type}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type2",{{" - ", "product"}, {" -------: ", "quantity"}, {" ---------: ", "unitprice"}})
+				in
+				    #"Renamed Columns1"
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

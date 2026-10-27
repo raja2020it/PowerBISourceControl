@@ -1,0 +1,115 @@
+table DimGeography
+	lineageTag: f330a65b-e655-4520-b344-fa5547f2a368
+
+	column GeographyKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6bd979e0-a104-4ab8-8a01-fda15ef8f730
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		sourceProviderType: nvarchar(30)
+		lineageTag: 317e08f4-66a6-4118-a1ee-947990dae9ed
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceCode
+		dataType: string
+		sourceProviderType: nvarchar(3)
+		lineageTag: 51aeebf3-7d3a-4e68-b92b-d496113dacb7
+		summarizeBy: none
+		sourceColumn: StateProvinceCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 97659fd9-ac13-4aaa-94ec-6e7bca1a1019
+		summarizeBy: none
+		sourceColumn: StateProvinceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegionCode
+		dataType: string
+		sourceProviderType: nvarchar(3)
+		lineageTag: 11f96e98-2a62-4431-afee-e05687d7acc9
+		summarizeBy: none
+		sourceColumn: CountryRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishCountryRegionName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: c34a1f81-988c-4466-9d5a-a876ca01f8a6
+		summarizeBy: none
+		sourceColumn: EnglishCountryRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishCountryRegionName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: cfc9601f-3fdb-4428-824a-72c8d8c8c4d5
+		summarizeBy: none
+		sourceColumn: SpanishCountryRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchCountryRegionName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 73b86cb3-bf2f-477f-87b6-e51ab741f741
+		summarizeBy: none
+		sourceColumn: FrenchCountryRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		sourceProviderType: nvarchar(15)
+		lineageTag: 1c620caa-137e-452b-834d-0848dd542bcd
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 696f441d-370b-4f25-be48-4b836350d476
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column IpAddressLocator
+		dataType: string
+		sourceProviderType: nvarchar(15)
+		lineageTag: d4f8a9fa-b1b6-4599-a55e-cf69bf1535d4
+		summarizeBy: none
+		sourceColumn: IpAddressLocator
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimGeography = m
+		mode: dual
+		source =
+				let
+				    Source = Sql.Databases("madalalaptop"),
+				    AdventureWorksDW2025 = Source{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_DimGeography = AdventureWorksDW2025{[Schema="dbo",Item="DimGeography"]}[Data]
+				in
+				    dbo_DimGeography
+

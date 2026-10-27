@@ -1,0 +1,44 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+
+// DAX Query
+DEFINE
+	VAR __DS0FilterTable = 
+		TREATAS({2012}, 'DimDate'[FiscalYear])
+
+	VAR __DS0FilterTable2 = 
+		TREATAS({"January",
+			"February",
+			"March",
+			"April"}, 'DimDate'[EnglishMonthName])
+
+	VAR __DS0Core = 
+		SUMMARIZECOLUMNS(
+			ROLLUPADDISSUBTOTAL(
+				ROLLUPGROUP('DimDate'[FiscalYear], 'DimDate'[MonthNumberOfYear]), "IsGrandTotalRowTotal"
+			),
+			__DS0FilterTable,
+			__DS0FilterTable2,
+			"Total_Sales__SAMEPERIODLASTYEAR_", '_Measures'[Total Sales (SAMEPERIODLASTYEAR)],
+			"Total_Sales", '_Measures'[Total Sales],
+			"Total_Sales__PARALLELPERIOD__24_Months_", '_Measures'[Total Sales (PARALLELPERIOD (24 Months)],
+			"Total_Sales__DATEADD_24_Months_", '_Measures'[Total Sales (DATEADD 24 Months)]
+		)
+
+	VAR __DS0PrimaryWindowed = 
+		TOPN(
+			502,
+			__DS0Core,
+			[IsGrandTotalRowTotal],
+			0,
+			'DimDate'[FiscalYear],
+			1,
+			'DimDate'[MonthNumberOfYear],
+			1
+		)
+
+EVALUATE
+	__DS0PrimaryWindowed
+
+ORDER BY
+	[IsGrandTotalRowTotal] DESC, 'DimDate'[FiscalYear], 'DimDate'[MonthNumberOfYear]

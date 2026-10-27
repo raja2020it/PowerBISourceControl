@@ -1,0 +1,276 @@
+table _Measures
+	lineageTag: ac18de3c-2cf7-4c2a-b11f-418340c0e04d
+
+	measure 'Total Sales' = SUM('FactInternetSales'[SalesAmount])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 4a992741-ad25-4bdc-8aab-e4952ad8b6c7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Cost' = SUMX('FactInternetSales',FactInternetSales[OrderQuantity] * FactInternetSales[UnitPrice])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8ca5750e-22af-4b70-aac4-31b279193c7c
+
+	measure 'Total Quantity' = SUM(FactInternetSales[OrderQuantity])
+		formatString: 0
+		lineageTag: ec62842a-0365-4fa7-b8a0-5fe90458cda2
+
+	measure 'Total TAX' = SUM(FactInternetSales[TaxAmt])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 9a93aabe-f65f-432a-af32-8c68f5c3cd7d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Freight' = SUM(FactInternetSales[Freight])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 54d530fa-168a-435b-9f9b-e6e67439f8d3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Profit' = [Total Sales]-[Total Cost]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c3eb9f81-da1d-457d-8369-2c6dbfeb1b6f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Profit Margin %' = DIVIDE([Total Profit],[Total Sales])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 39852494-7a02-41cb-8545-943d864d96e7
+
+	measure 'Average Selling Price' = DIVIDE([Total Sales],[Total Quantity])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: b52c29ff-4266-4527-9d04-7f244d4f7d74
+
+	measure 'Total orders' = DISTINCTCOUNT ( FactInternetSales[SalesOrderNumber] )
+		formatString: 0
+		lineageTag: f0dcfa2a-0180-4f57-a36d-e58d8e6af04f
+
+	measure 'Total customers' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+		formatString: 0
+		lineageTag: 722fb254-d70c-4dbf-953d-382aae50b517
+
+	measure 'Average order value' = DIVIDE([Total Sales],[Total orders])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 4a6f542b-bc3c-4ea0-9ac8-f6109ec5ae30
+
+	measure 'Orders per Customer' = DIVIDE([Total orders],[Total customers])
+		lineageTag: b03f3c9d-fed9-400d-8bb2-5afb10c8c674
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Bike Sales' = CALCULATE([Total Sales],DimProductCategory[EnglishProductCategoryName] = "Bikes")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 01. Filters Measures
+		lineageTag: 286c095e-8225-43aa-b2e7-a5b7c91d3bed
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Accessaory Sales' = CALCULATE([Total Sales],'DimProductCategory'[EnglishProductCategoryName] = "Accessories")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01. Filters Measures
+		lineageTag: 21f53a07-bd6f-4aca-89fe-7eb9a0585dad
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Clothing Sales' = CALCULATE([Total Sales],'DimProductCategory'[EnglishProductCategoryName] = "Clothing")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01. Filters Measures
+		lineageTag: 894a9a87-15dc-4d04-909c-5f500c7653d6
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (All)' = CALCULATE([Total Sales],ALL(DimProductCategory),ALL(DimGeography),ALL(DimDate))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 01. Filters Measures
+		lineageTag: 5417e3ca-f48b-44ea-a6dd-a96e3ea4e116
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (All Selected)' = CALCULATE([Total Sales],ALLSELECTED(DimProductCategory),ALLSELECTED(DimDate),ALLSELECTED(DimGeography))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 01. Filters Measures
+		lineageTag: 9767dfa9-214f-4b35-a0fd-a5ff28bec0d0
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (All Except)' = CALCULATE([Total Sales],ALLEXCEPT(DimGeography,DimGeography[EnglishCountryRegionName]))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01. Filters Measures
+		lineageTag: 94a1cf58-ee0d-442a-a9fe-cc63aa81e0d9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (Keepfilters)' = CALCULATE([Total Sales],KEEPFILTERS(DimProductCategory[EnglishProductCategoryName] = ("Bikes")))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01. Filters Measures
+		lineageTag: 8145a614-793a-4e65-a4ff-1b703d75ba18
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (Remove Filters)' =
+			CALCULATE([Total Sales], REMOVEFILTERS(DimGeography[EnglishCountryRegionName]))
+			-- Total Sales (Remove Filters) = CALCULATE([Total Sales], REMOVEFILTERS(DimProductCategory))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 01. Filters Measures
+		lineageTag: d66b401d-a75f-4d61-81b0-1de76350413f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'High Value Sales' = CALCULATE([Total Sales],FILTER(FactInternetSales,FactInternetSales[SalesAmount] > 1000))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 01. Filters Measures
+		lineageTag: abdf6ec4-4f82-4a3e-95ce-cd803a796ae3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'High Value Sales %' = DIVIDE([High Value Sales],[Total Sales] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 01. Filters Measures
+		lineageTag: 7369b302-90bd-43f4-a2cc-0edf77287de7
+
+	measure 'Total Sales (YTD)' = TOTALYTD([Total Sales],DimDate[FullDateAlternateKey])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 571f34fa-3acd-4104-ae59-f134248396e5
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (MTD)' = TOTALMTD([Total Sales],DimDate[FullDateAlternateKey])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 7ef7ec70-3be2-4be9-9c26-81f683a285c7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (QTD)' = TOTALQTD([Total Sales],DimDate[FullDateAlternateKey])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 6aafb58a-ae43-4067-9cf0-035e1cac8f9e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '1 Year Ago Total Sales (DATEADD)' = CALCULATE([TOTAL SALES],DATEADD('DimDate'[FullDateAlternateKey],-1,YEAR))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 941e2405-81be-4b1b-9215-a3f6e69066cc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '1 Year Ago Total Sales (PARALLELPERIOD)' = CALCULATE([TOTAL SALES],PARALLELPERIOD(DimDate[FullDateAlternateKey],-1,YEAR))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 2270ce9e-f46f-4c4b-a596-4ec56a097850
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (2010)' = CALCULATE([Total Sales],DimDate[FiscalYear]=2010)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 2ddd8329-669c-42ab-a590-5bfb3b92a7dc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (SAMEPERIODLASTYEAR)' = CALCULATE([TOTAL SALES],SAMEPERIODLASTYEAR(DimDate[FullDateAlternateKey]) )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 949ed5bc-70d2-46a0-9594-5187c3939e9e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (PARALLELPERIOD (24 Months)' = CALCULATE([TOTAL SALES],PARALLELPERIOD(DimDate[FullDateAlternateKey],-24,MONTH) )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: b6ee7f54-7272-4375-a01e-96a1f814d569
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (DATEADD 24 Months)' = CALCULATE([Total Sales],DATEADD(DimDate[FullDateAlternateKey],-24,MONTH))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: e99624f8-abe0-4666-88a9-30335c00f70a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (Previous Month)' = CALCULATE([TOTAL SALES],PREVIOUSMONTH(DimDate[FullDateAlternateKey]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 89aba73e-7a4b-40d0-a2d5-1729fa00c17d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (MoM %)' = ```
+			DIVIDE([total sales] - [Total Sales (Previous Month)],[Total Sales (Previous Month)]) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 83f22655-a64b-4408-b619-1f8d92584fef
+
+	measure 'Total Sales (Rolling 3 Month Avg.)' = ```
+			
+			        AVERAGEX(
+			    DATESINPERIOD(
+			        DimDate[FullDateAlternateKey],
+			        MAX(DimDate[FullDateAlternateKey]),
+			        -3,
+			        MONTH
+			    ),
+			    [TOTAL SALES]
+			)
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 15aaf5d3-190c-49d2-a410-cf8629469235
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (Rolling 12 Months)' = CALCULATE([TOTAL SALES],DATESINPERIOD(DimDate[FullDateAlternateKey],MAX(DimDate[FullDateAlternateKey]),-12,MONTH))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 6d1418ed-a769-4e64-87b6-ab4d63ba4648
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Sales (Previous Month (RemvoeFilter)' = CALCULATE([TOTAL SALES],REMOVEFILTERS(DimDate),DATEADD(DimDate[FullDateAlternateKey],-1,MONTH))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 1f23c1e8-0635-4022-b549-e94a5f0a0919
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Order count by customer' = COUNTROWS(RELATEDTABLE('FactInternetSales'))
+		formatString: 0
+		displayFolder: 02. TIME INTELLIGENT MEASURES
+		lineageTag: 3fb43b79-a5d5-44ed-8cab-7868f0ac7064
+
+	measure 'Total Sales (2013)'
+		lineageTag: 31d5af32-76ef-4f9c-aee3-e31b9b11946c
+
+	measure 'Sales (Max)' = ```
+			MAX(FactInternetSales[SalesAmount]) 
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d0265a0b-af0e-4fec-861f-a7a74bb77ab3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Sales (MAXX)' = MAXX(FactInternetSales,FactInternetSales[SalesAmount]*FactInternetSales[DiscountAmount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4456c66c-6e15-43fc-9753-8b06fc7de02d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure LAst
+		lineageTag: 8945b850-617a-491e-b029-6f944d324b22
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
