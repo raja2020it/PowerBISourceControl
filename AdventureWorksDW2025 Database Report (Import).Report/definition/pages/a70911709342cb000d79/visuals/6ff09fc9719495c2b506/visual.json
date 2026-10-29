@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "6ff09fc9719495c2b506",
   "position": {
-    "x": 450.67821067821069,
-    "y": 381.41414141414145,
+    "x": 340.77922077922091,
+    "y": 277.05627705627711,
     "z": 1,
-    "height": 146.83982683982686,
-    "width": 258.5858585858586,
+    "height": 263.20346320346323,
+    "width": 518.09523809523807,
     "tabOrder": 1
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Columns": {
           "projections": [
             {
               "field": {
@@ -28,8 +28,32 @@
               },
               "queryRef": "DimProductCategory.EnglishProductCategoryName",
               "nativeQueryRef": "Product Category",
+              "active": true,
               "displayName": "Product Category"
-            },
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "FiscalYear"
+                }
+              },
+              "queryRef": "DimDate.FiscalYear",
+              "nativeQueryRef": "FiscalYear",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Measure": {
